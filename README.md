@@ -11,3 +11,6 @@ the data over processing it to saving a tidy file set in a new subfolder.
 3. Execute the script using
     - R run_analysis.R
 4. You can find the resulting tidy data set in complete/tidyset.txt
+
+# How it works
+The comments in the analysis script document all steps.
