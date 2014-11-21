@@ -1,4 +1,4 @@
-# Download and unzip data set. 
+# Download and unzip data set
 download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", dest="UCI_HAR_Dataset.zip", method="curl")
 unzip("UCI_HAR_Dataset.zip")
 
@@ -22,7 +22,6 @@ subject_combined <- rbind(subject_train, subject_test)
 
 # Step 2:
 # Extract only the measurements on the mean and standard deviation for each measurement
-# grep("mean", colnames(X_combined)
 features <- readLines("features.txt")
 mean_std_deviation_cols <- c(grep("mean\\(\\)$", features), grep("std\\(\\)$", features))
 X_mean_std_deviation <- X_combined[,mean_std_deviation_cols]
@@ -37,17 +36,12 @@ filteredcolnames <- colnames[mean_std_deviation_cols]
 colnames(X_mean_std_deviation) <- filteredcolnames
 
 # Add activity labels as first row
-#X_mean_std_deviation <- cbind(activity=descriptive_names[, 1], X_mean_std_deviation)
 X_mean_std_deviation <- cbind(activity=y_combined, X_mean_std_deviation)
 colnames(X_mean_std_deviation)[1] <- "Activity"
 
 # Step 4:
 # Use descriptive activity names to name the activities in the data set
-
 activity_labels <- read.table("activity_labels.txt")
-#for(i in 1:nrow(activity_labels)) {
-#    X_mean_std_deviation[which(X_mean_std_deviation$Activity == i),]$Activity <- as.character(activity_labels[,2][i])
-#}
 X_mean_std_deviation$Activity <- as.factor(X_mean_std_deviation$Activity)
 levels(X_mean_std_deviation$Activity) <- activity_labels[,2]
 
