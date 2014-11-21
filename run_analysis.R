@@ -1,6 +1,6 @@
-# Download and unzip data set
-download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", dest="UCI_HAR_Dataset.zip", method="curl")
-unzip("UCI_HAR_Dataset.zip")
+# Download and unzip data set. Skipped here because we may assume that the data is downloaded already.
+# download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", dest="UCI_HAR_Dataset.zip", method="curl")
+# unzip("UCI_HAR_Dataset.zip")
 
 # Change work directory to data set directory for shorter statements
 setwd("UCI HAR Dataset")
@@ -61,5 +61,5 @@ tidyset <- aggregate(. ~ Subject + Activity, X_mean_std_deviation, mean)
 dir.create("complete")
 
 # Write it out
-write.table(tidyset, file="complete/tidyset.txt")
+write.table(tidyset, file="complete/tidyset.txt", row.names=FALSE)
 
